@@ -13,6 +13,7 @@ import Icon from 'react-native-ionicons';
 import HomeScreen from './scenes/HomeScreen';
 import ProfileScreen from './scenes/ProfileScreen';
 import SettingsScreen from './scenes/SettingsScreen';
+import LoginScreen from './scenes/LoginScreen';
 const {width} = Dimensions.get('window');
 
 const CustomDrawerNavigation = (props) => {
@@ -62,6 +63,12 @@ const Drawer = createDrawerNavigator(
       screen: SettingsScreen,
       navigationOptions: {
         title: 'Settings',
+      },
+    },
+    Login: {
+      screen: LoginScreen,
+      navigationOptions: {
+        title: 'Login',
       },
     },
   },
