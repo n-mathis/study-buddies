@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Header} from 'react-native-elements';
 import Icon from 'react-native-ionicons';
+import SwipeCards from '../components/swipeCard';
 
 class HomeScreen extends Component {
   static navigationOptions = {
@@ -23,7 +24,7 @@ class HomeScreen extends Component {
           centerComponent={<Text style={{fontSize: 36}}>Study Buddies</Text>}
         />
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <Text>Home Page</Text>
+          <SwipeCards/>
         </View>
       </View>
     );
