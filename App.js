@@ -1,118 +1,80 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
   Text,
-  StatusBar,
-} from 'react-native';
-
-import {
+  View,
+  SafeAreaView,
+  ScrollView,
+  Dimensions,
   Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+} from 'react-native';
+import {createAppContainer} from 'react-navigation';
+import {createDrawerNavigator, DrawerItems} from 'react-navigation-drawer';
+import Icon from 'react-native-ionicons';
+import HomeScreen from './src/scenes/HomeScreen';
+import ProfileScreen from './src/scenes/ProfileScreen';
+import SettingsScreen from './src/scenes/SettingsScreen';
+const {width} = Dimensions.get('window');
 
-import Home from './src/scenes/home';
-import Swipecard from './src/components/swipeCard';
-
-const App: () => React$Node = () => {
-  // return (
-  //   <>
-  //     <StatusBar barStyle="dark-content" />
-  //     <SafeAreaView>
-  //       <ScrollView
-  //         contentInsetAdjustmentBehavior="automatic"
-  //         style={styles.scrollView}>
-  //         <Header />
-  //         {global.HermesInternal == null ? null : (
-  //           <View style={styles.engine}>
-  //             <Text style={styles.footer}>Engine: Hermes</Text>
-  //           </View>
-  //         )}
-  //         <View style={styles.body}>
-  //           <View style={styles.sectionContainer}>
-  //             <Text style={styles.sectionTitle}>Step One</Text>
-  //             <Text style={styles.sectionDescription}>
-  //               Edit <Text style={styles.highlight}>Hello.js</Text> to change this
-  //               screen and then come back to see your edits.
-  //             </Text>
-  //           </View>
-  //           <View style={styles.sectionContainer}>
-  //             <Text style={styles.sectionTitle}>See Your Changes</Text>
-  //             <Text style={styles.sectionDescription}>
-  //               <ReloadInstructions />
-  //             </Text>
-  //           </View>
-  //           <View style={styles.sectionContainer}>
-  //             <Text style={styles.sectionTitle}>Debug</Text>
-  //             <Text style={styles.sectionDescription}>
-  //               <DebugInstructions />
-  //             </Text>
-  //           </View>
-  //           <View style={styles.sectionContainer}>
-  //             <Text style={styles.sectionTitle}>Learn More</Text>
-  //             <Text style={styles.sectionDescription}>
-  //               Read the docs to discover what to do next:
-  //             </Text>
-  //           </View>
-  //           <LearnMoreLinks />
-  //         </View>
-  //       </ScrollView>
-  //     </SafeAreaView>
-  //   </>
-  // );
-  return (<Swipecard/>);
+const CustomDrawerNavigation = (props) => {
+  return (
+    <SafeAreaView style={{flex: 1}}>
+      <View
+        style={{
+          height: 50,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <Text>USERNAME</Text>
+      </View>
+      <ScrollView>
+        <DrawerItems {...props} />
+      </ScrollView>
+      <View style={{alignItems: 'center', bottom: 20}}>
+        <View style={{flexDirection: 'row'}}>
+          <View style={{flexDirection: 'column', marginRight: 15}}>
+            <Icon
+              name="log-out"
+              style={{fontSize: 24}}
+              onPress={() => console.log('Log out')}
+            />
+          </View>
+        </View>
+      </View>
+    </SafeAreaView>
+  );
 };
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+const Drawer = createDrawerNavigator(
+  {
+    Home: {
+      screen: HomeScreen,
+      navigationOptions: {
+        title: 'Home',
+      },
+    },
+    Profile: {
+      screen: ProfileScreen,
+      navigationOptions: {
+        title: 'Profile',
+      },
+    },
+    Settings: {
+      screen: SettingsScreen,
+      navigationOptions: {
+        title: 'Settings',
+      },
+    },
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
+  {
+    drawerPosition: 'left',
+    contentComponent: CustomDrawerNavigation,
+    drawerOpenRoute: 'DrawerOpen',
+    drawerCloseRoute: 'DrawerClose',
+    drawerToggleRoute: 'DrawerToggle',
+    drawerWidth: (width / 3) * 2,
   },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
+);
+
+const App = createAppContainer(Drawer);
 
 export default App;
