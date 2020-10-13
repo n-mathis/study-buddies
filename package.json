@@ -13,6 +13,7 @@
     "native-base": "^2.13.14",
     "react": "16.13.1",
     "react-native": "0.63.3",
+    "react-native-swipe-cards": "^0.1.1",
     "react-native-elements": "^2.3.2",
     "react-native-gesture-handler": "^1.8.0",
     "react-native-ionicons": "^4.x",

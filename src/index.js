@@ -10,9 +10,9 @@ import {
 import {createAppContainer} from 'react-navigation';
 import {createDrawerNavigator, DrawerItems} from 'react-navigation-drawer';
 import Icon from 'react-native-ionicons';
-import HomeScreen from './src/scenes/HomeScreen';
-import ProfileScreen from './src/scenes/ProfileScreen';
-import SettingsScreen from './src/scenes/SettingsScreen';
+import HomeScreen from './scenes/HomeScreen';
+import ProfileScreen from './scenes/ProfileScreen';
+import SettingsScreen from './scenes/SettingsScreen';
 const {width} = Dimensions.get('window');
 
 const CustomDrawerNavigation = (props) => {
