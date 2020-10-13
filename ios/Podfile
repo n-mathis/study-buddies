@@ -14,6 +14,8 @@ target 'studybuddies' do
   use_react_native!(:path => config["reactNativePath"])
 
 
+  pod 'react-native-firebaseui-auth', :path => '../node_modules/react-native-firebaseui-auth'
+
   target 'studybuddiesTests' do
     inherit! :complete
     # Pods for testing
