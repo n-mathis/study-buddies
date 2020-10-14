@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@react-native-firebase/app": "^8.4.5",
+    "@react-native-firebase/auth": "^9.3.0",
+    "@react-native-firebase/database": "^7.5.11",
     "firebase": "^7.23.0",
     "firebase-admin": "^9.2.0",
     "native-base": "^2.13.14",

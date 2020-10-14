@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Header} from 'react-native-elements';
-import Icon from 'react-native-ionicons';
+import Iconn from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class LoginScreen extends Component {
   static navigationOptions = {
     drawerIcon: ({tintColor}) => (
-      <Icon name="login" style={{fontSize: 24, color: tintColor}} />
+      <Iconn name="login" style={{fontSize: 24, color: tintColor}} />
     ),
   };
 
@@ -15,8 +15,9 @@ class LoginScreen extends Component {
       <View style={styles.container}>
         <Header
           leftComponent={
-            <Icon
+            <Iconn
               name="menu"
+              size={40}
               onPress={() => this.props.navigation.openDrawer()}
             />
           }
