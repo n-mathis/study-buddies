@@ -49,21 +49,17 @@ class NoMoreCards extends Component {
 export default class extends React.Component {
   constructor(props) {
     super(props);
-    // Should replace cards data with actual backend data
-    this.state = {
-      cards: [
-        {name: 'Remi, CS50', imgUrl: 'https://image.freepik.com/foto-gratis/adorable-estudiante-cabello-rizado-viste-camiseta-blanca-informal-mono-sostiene-bloc-notas-o-libro-texto_95891-107.jpg', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book'},
-        {name: 'Nana Mathis', imgUrl: 'https://www.arenasimulation.com/public/uploads/images/general/studentpic1.png', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book'},
-        {name: 'Saul Montes De Oca', imgUrl: 'https://s.libertaddigital.com/2019/08/15/estudiante-biblioteca-libros.jpg', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book'},
-        {name: 'Nathan Moeliono', imgUrl: 'https://rogersbh.org/application/files/thumbnails/small/2815/3632/7168/podcastblog2.jpg', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book'},
-        {name: 'Sincerely Brittaney', imgUrl: 'https://thispersondoesnotexist.com/image', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book'},
-        {name: 'Shivay Lamba', imgUrl: 'https://thispersondoesnotexist.com/image', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book'},
-      ]
-    };
+    this.state = this.props.user;
   }
 
   handleYup (card) {
+    // this.setState({
+    //   ...,
+    //   yup: yup.push(card.name);
+    // })
     console.log(`Yup for ${card.name}`)
+    console.log(this.state)
+
   }
   handleNope (card) {
     console.log(`Nope for ${card.name}`)
@@ -73,7 +69,7 @@ export default class extends React.Component {
     // stack={true}
     return (
       <SwipeCards
-        cards={this.state.cards}
+        cards={this.props.buddies}
         renderCard={(cardData) => <Card {...cardData} />}
         renderNoMoreCards={() => <NoMoreCards />}
         
