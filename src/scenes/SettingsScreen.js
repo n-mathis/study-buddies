@@ -1,13 +1,12 @@
-import { Image } from 'native-base';
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Header} from 'react-native-elements';
-import Icon from 'react-native-ionicons';
+import Iconn from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class SettingsScreen extends Component {
   static navigationOptions = {
     drawerIcon: ({tintColor}) => (
-      <Icon name="football" style={{fontSize: 24, color: tintColor}} />
+      <Iconn name="cog" style={{fontSize: 24, color: tintColor}} />
     ),
   };
 
@@ -16,13 +15,13 @@ class SettingsScreen extends Component {
       <View style={styles.container}>
         <Header
           leftComponent={
-            <Icon
-              name="checkmark"
+            <Iconn
+              name="menu"
+              size={40}
               onPress={() => this.props.navigation.openDrawer()}
             />
           }
           centerComponent={<Text style={{fontSize: 28}}>Settings</Text>}
-
         />
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           <Text>Settings</Text>

@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createDrawerNavigator, DrawerItems} from 'react-navigation-drawer';
-import Icon from 'react-native-ionicons';
+import Iconn from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeScreen from './scenes/HomeScreen';
 import ProfileScreen from './scenes/ProfileScreen';
 import SettingsScreen from './scenes/SettingsScreen';
@@ -33,8 +33,8 @@ const CustomDrawerNavigation = (props) => {
       <View style={{alignItems: 'center', bottom: 20}}>
         <View style={{flexDirection: 'row'}}>
           <View style={{flexDirection: 'column', marginRight: 15}}>
-            <Icon
-              name="beer"
+            <Iconn
+              name="logout"
               style={{fontSize: 24}}
               onPress={() => console.log('Log out')}
             />

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "firebase": "^7.23.0",
+    "firebase-admin": "^9.2.0",
     "native-base": "^2.13.14",
     "react": "16.13.1",
     "react-native": "0.63.3",
