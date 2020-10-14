@@ -13,6 +13,7 @@ import Icon from 'react-native-ionicons';
 import HomeScreen from './scenes/HomeScreen';
 import ProfileScreen from './scenes/ProfileScreen';
 import SettingsScreen from './scenes/SettingsScreen';
+import MatchesScreen from './scenes/MatchesScreen';
 const {width} = Dimensions.get('window');
 
 const CustomDrawerNavigation = (props) => {
@@ -33,7 +34,7 @@ const CustomDrawerNavigation = (props) => {
         <View style={{flexDirection: 'row'}}>
           <View style={{flexDirection: 'column', marginRight: 15}}>
             <Icon
-              name="log-out"
+              name="beer"
               style={{fontSize: 24}}
               onPress={() => console.log('Log out')}
             />
@@ -50,6 +51,12 @@ const Drawer = createDrawerNavigator(
       screen: HomeScreen,
       navigationOptions: {
         title: 'Home',
+      },
+    },
+    Matches: {
+      screen: MatchesScreen,
+      navigationOptions: {
+        title: 'Matches',
       },
     },
     Profile: {
