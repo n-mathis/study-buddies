@@ -16,7 +16,7 @@ class LoginScreen extends Component {
         <Header
           leftComponent={
             <Icon
-              name="menu"
+              name="checkmark"
               onPress={() => this.props.navigation.openDrawer()}
             />
           }
