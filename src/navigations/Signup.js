@@ -3,10 +3,10 @@ import {View, Text, StyleSheet} from 'react-native';
 import {Header} from 'react-native-elements';
 import Iconn from 'react-native-vector-icons/MaterialCommunityIcons';
 
-class LoginScreen extends Component {
+class Signup extends Component {
   static navigationOptions = {
     drawerIcon: ({tintColor}) => (
-      <Iconn name="login" style={{fontSize: 24, color: tintColor}} />
+      <Iconn name="cog" style={{fontSize: 24, color: tintColor}} />
     ),
   };
 
@@ -21,12 +21,11 @@ class LoginScreen extends Component {
               onPress={() => this.props.navigation.openDrawer()}
             />
           }
-          centerComponent={<Text style={{fontSize: 36}}>Study Buddies</Text>}
+          centerComponent={<Text style={{fontSize: 28}}>Settings</Text>}
         />
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <Text>Login</Text>
+          <Text>Settings</Text>
         </View>
-        
       </View>
     );
   }
@@ -38,4 +37,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default Signup;
