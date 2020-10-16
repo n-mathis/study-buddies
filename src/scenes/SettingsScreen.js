@@ -52,7 +52,7 @@ class SettingsScreen extends Component {
                 }}>
                 <TouchableRipple style={{borderRadius: 100}} onPress={() => {}}>
                   <View>
-                    <Icon
+                    <Iconn
                       name="man"
                       size={25}
                       style={{position: 'absolute', top: 30, left: 10}}
