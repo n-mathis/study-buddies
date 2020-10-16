@@ -18,7 +18,7 @@ class Login extends Component {
   }
 
   handleSignup = () => {
-    this.props.navigation.navigate('Signup');
+    this.props.navigation.navigate('FormScreen');
   };
 
   handleLogin = (email, password) => {

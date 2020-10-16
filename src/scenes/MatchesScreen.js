@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
 import {Header} from 'react-native-elements';
 import Iconn from 'react-native-vector-icons/MaterialCommunityIcons';
+import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
 
 import {
   Avatar,

@@ -9,13 +9,46 @@ import {
   Text,
   TouchableRipple,
 } from 'react-native-paper';
+import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
 
 class ProfileScreen extends Component {
+  constructor(props) {
+    super(props);
+    // this state should be the one submited to the backend, WITH id obtained by signin in with firebase?
+    this.state = {
+      user: {},
+      uid: '',
+      name: '',
+      email: '',
+      // photo: '',
+      description: '',
+      major: '',
+      number: '',
+      class: '',
+      college: '',
+    };
+  }
   static navigationOptions = {
     drawerIcon: ({tintColor}) => (
       <Iconn name="account" style={{fontSize: 24, color: tintColor}} />
     ),
   };
+  getUser = () => {
+    const user = auth().currentUser;
+    this.setState({user: user});
+    console.log(user.email);
+    database()
+      .ref(`/Users`)
+      .on('value', (snapshot) => {
+        console.log(snapshot.val());
+        // this.setState({user: user}););
+      });
+  };
+
+  componentDidMount() {
+    this.getUser();
+  }
 
   render() {
     return (
@@ -92,7 +125,6 @@ class ProfileScreen extends Component {
               <Caption>Matches</Caption>
             </View>
           </View>
-
           <View style={styles.menuWrapper}>
             <TouchableRipple onPress={() => {}}>
               <View style={styles.menuItem}>
@@ -114,7 +146,7 @@ class ProfileScreen extends Component {
             </TouchableRipple>
             <TouchableRipple onPress={() => {}}>
               <View style={styles.menuItem}>
-                <Iconn name="settings-outline" color="#FF6347" size={25} />
+                <Iconn name="cog" color="#FF6347" size={25} />
                 <Text style={styles.menuItemText}>Settings</Text>
               </View>
             </TouchableRipple>

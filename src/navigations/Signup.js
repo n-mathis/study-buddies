@@ -1,4 +1,4 @@
-// IN THE WORKS
+// NOT USED, REPLACED WITH FORMSCREEN
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, Button, TextInput} from 'react-native';
 import auth from '@react-native-firebase/auth';
