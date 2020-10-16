@@ -8,7 +8,8 @@ import HomeScreen from '../scenes/HomeScreen';
 import ProfileScreen from '../scenes/ProfileScreen';
 import SettingsScreen from '../scenes/SettingsScreen';
 import MatchesScreen from '../scenes/MatchesScreen';
-
+import auth from '@react-native-firebase/auth';
+import AuthStack from './AuthStack';
 const {width} = Dimensions.get('window');
 
 const CustomDrawerNavigation = (props) => {
@@ -31,7 +32,14 @@ const CustomDrawerNavigation = (props) => {
             <Iconn
               name="logout"
               style={{fontSize: 24}}
-              onPress={() => console.log('Log out')}
+              onPress={() => {
+                auth()
+                  .signOut()
+                  .then(() => {
+                    console.log('User signed out!');
+                    // props.navigation.navigate('AuthStack');
+                  });
+              }}
             />
           </View>
         </View>

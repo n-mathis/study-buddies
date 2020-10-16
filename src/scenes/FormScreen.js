@@ -29,23 +29,56 @@ class FormScreen extends Component {
       college: '',
     };
   }
+  getMatches = (user) => {
+    database()
+      .ref(`/Users/${user.uid}`)
+      // gets the data from the current user
+      .once('value', (snapshot) => {
+        const userClass = snapshot.val().class;
+        database()
+          // get all users
+          .ref('/Users')
+          .once('value', (snapshot) => {
+            // go through each user
+            snapshot.forEach((childSnapshot) => {
+              // check each user if they have a matching class
+              var userMatch = childSnapshot.val();
+              // if yes, update matches for both the current user and matched user
+              if (userMatch.class === userClass && userMatch.uid !== user.uid) {
+                console.log(userMatch.uid);
+                database()
+                  .ref(`Users/${user.uid}`)
+                  .update({
+                    matches: {[userMatch.uid]: userMatch.class},
+                  });
+                database()
+                  .ref(`Users/${userMatch.uid}`)
+                  .update({
+                    matches: {[user.uid]: user.class},
+                  });
+              }
+            });
+          });
+      });
+  };
 
   createUser = (email, password) => {
     auth()
       .createUserWithEmailAndPassword(email, password)
       .then((userCreds) => {
         var user = userCreds.user;
-        database().ref('/Users').set({
+        database().ref(`/Users/${user.uid}`).set({
           uid: user.uid,
-        });
-        database().ref(`/Users${user.uid}`).set({
           full_name: this.state.name,
           description: this.state.description,
           major: this.state.major,
+          class: this.state.class,
           phone_number: this.state.number,
           school: this.state.college,
+          matches: '',
         });
         console.log('User account created & signed in!');
+        this.getMatches(user);
         this.props.navigation.navigate('App');
       })
       .catch((error) => {
@@ -55,10 +88,6 @@ class FormScreen extends Component {
         if (error.code === 'auth/invalid-email') {
           console.log('That email address is invalid!');
         }
-        if (error.code === 'auth/weak-password') {
-          console.log(error.code.getReason());
-        }
-        console.log('hello')
         console.error(error);
       });
   };

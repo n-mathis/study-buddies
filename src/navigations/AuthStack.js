@@ -1,7 +1,6 @@
 import {createStackNavigator} from 'react-navigation-stack';
 
 import Login from '../scenes/LoginScreen';
-// import Signup from './Signup';
 import FormScreen from '../scenes/FormScreen';
 
 const AuthStack = createStackNavigator(

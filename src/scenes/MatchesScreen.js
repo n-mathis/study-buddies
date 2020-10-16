@@ -17,29 +17,7 @@ class ProfileScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      matches: [
-        {
-          id: '3',
-          name: 'Nana Mathis',
-          class: 'CS50',
-          imgUrl:
-            'https://images.idgesg.net/images/article/2019/02/women_gender_program_code_monitor-100787121-large.jpg',
-        },
-        {
-          id: '4',
-          name: 'Remi ChibiRemy',
-          class: 'CS50',
-          imgUrl:
-            'https://news.mit.edu/sites/default/files/images/201704/Layla-brighten.jpg',
-        },
-        {
-          id: '5',
-          name: 'Nathan Moeliono',
-          class: 'CS50',
-          imgUrl:
-            'https://d2jyir0m79gs60.cloudfront.net/news/images/successful-college-student-lg.png',
-        },
-      ],
+      matches: {},
     };
   }
   static navigationOptions = {
@@ -47,6 +25,71 @@ class ProfileScreen extends Component {
       <Iconn name="account-multiple" style={{fontSize: 24, color: tintColor}} />
     ),
   };
+  findMatches = () => {
+    const user = auth().currentUser;
+    database()
+      .ref(`/Users/${user.uid}`)
+      // gets snapshot of current user data
+      .once('value', (userData) => {
+        const userClass = userData.val().class;
+        database()
+          // get snapshot of all users
+          .ref('/Users')
+          .once('value', (users) => {
+            // check each user in snapshot
+            users.forEach((potentialMatch) => {
+              // check if each potential user has a matching class
+              var userMatch = potentialMatch.val();
+              // if yes, update matches for both the current user and matched user
+              if (userMatch.class === userClass && userMatch.uid !== user.uid) {
+                database()
+                  .ref(`Users/${user.uid}/matches`)
+                  .update({
+                    [userMatch.uid]: userMatch.class,
+                  });
+                // TODO: below code not updated other user matches... not sure why
+                database()
+                  .ref(`Users/${userMatch.uid}/matches`)
+                  .update({
+                    [user.uid]: user.class,
+                  })
+                  .then((error) => {
+                    if (error) {
+                      console.error(error);
+                    } else {
+                      console.log('updated');
+                    }
+                  });
+              }
+            });
+          });
+      });
+  };
+  getMatches = () => {
+    const currentUser = auth().currentUser;
+    var foundMatches = {};
+    database()
+      .ref(`/Users/${currentUser.uid}`)
+      // gets snapshot of current user data
+      .once('value', (userData) => {
+        Object.keys(userData.val().matches).forEach((user) => {
+          database()
+            .ref(`Users/${user}`)
+            .once('value', (data) => {
+              // console.log(data.val());
+              foundMatches[user] = data.val();
+            });
+        });
+        this.setState({matches: foundMatches}, () => {
+          // console.log('actual matches' + foundMatches);
+          // console.log('here are the matches' + this.state.matches);
+        });
+      });
+  };
+  componentDidMount() {
+    this.findMatches();
+    this.getMatches();
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -61,7 +104,11 @@ class ProfileScreen extends Component {
           centerComponent={<Text style={{fontSize: 28}}>Matches</Text>}
         />
         <ScrollView>
-          {this.state.matches.map((buddy) => {
+          {/* THIS ISN'T DISPLAYING :( */}
+          {Object.keys(this.state.matches).map((key, buddy) => {
+            // console.log('matches' + this.state.matches);
+            // console.log('KEY' + key);
+            <Title> {key} </Title>;
             return (
               <TouchableRipple onPress={() => {}}>
                 <View key={buddy.id} style={styles.infoBoxWrapper}>
