@@ -17,30 +17,15 @@ class Login extends Component {
     };
   }
 
-  handleSignup = (email, password) => {
-    auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        console.log('User account created & signed in!');
-        // this.props.navigation.navigate('Signup');
-      })
-      .catch((error) => {
-        if (error.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
-        }
-
-        if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
-        }
-
-        console.error(error);
-      });
+  handleSignup = () => {
+    this.props.navigation.navigate('Signup');
   };
 
   handleLogin = (email, password) => {
     auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
+        console.log('Successful login');
         this.props.navigation.navigate('App');
       })
       .catch((error) => {
@@ -58,11 +43,11 @@ class Login extends Component {
       });
   };
 
-  logOut = () => {
-    auth()
-      .signOut()
-      .then(() => console.log('User signed out!'));
-  };
+  // logOut = () => {
+  //   auth()
+  //     .signOut()
+  //     .then(() => console.log('User signed out!'));
+  // };
 
   onGoogleButtonPress = async () => {
     // Get the users ID token
@@ -78,7 +63,7 @@ class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button title="Google Sign-In" onPress={this.onGoogleButtonPress} />
+        {/* <Button title="Google Sign-In" onPress={this.onGoogleButtonPress} /> */}
         <View style={styles.inputboxStyle}>
           <Text>Email</Text>
           <TextInput
@@ -101,13 +86,7 @@ class Login extends Component {
             this.handleLogin(this.state.email, this.state.password)
           }
         />
-        <Button
-          title="Sign up"
-          onPress={() =>
-            this.handleSignup(this.state.email, this.state.password)
-          }
-        />
-        <Button title="Log out" onPress={this.logOut} />
+        <Button title="Sign up" onPress={() => this.handleSignup()} />
       </View>
     );
   }

@@ -1,10 +1,10 @@
 import {createStackNavigator} from 'react-navigation-stack';
 
-import LoginScreen from './scenes/Login';
-import InfoScreen from './scenes/Signup';
+import Login from './Login';
+import Signup from './Signup';
 
 const AuthStack = createStackNavigator(
-  {Login: LoginScreen, Info: InfoScreen},
+  {Login: Login, Signup: Signup},
   {initialRouteName: 'Login', headerMode: 'none'},
 );
 

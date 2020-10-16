@@ -4,10 +4,10 @@ import {createAppContainer} from 'react-navigation';
 import {createDrawerNavigator, DrawerItems} from 'react-navigation-drawer';
 import Iconn from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import HomeScreen from './scenes/HomeScreen';
-import ProfileScreen from './scenes/ProfileScreen';
-import SettingsScreen from './scenes/SettingsScreen';
-import MatchesScreen from './scenes/MatchesScreen';
+import HomeScreen from '../scenes/HomeScreen';
+import ProfileScreen from '../scenes/ProfileScreen';
+import SettingsScreen from '../scenes/SettingsScreen';
+import MatchesScreen from '../scenes/MatchesScreen';
 
 const {width} = Dimensions.get('window');
 
