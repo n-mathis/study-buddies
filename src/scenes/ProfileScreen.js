@@ -103,7 +103,7 @@ class ProfileScreen extends Component {
           </TouchableRipple>
           <TouchableRipple onPress={() => {}}>
             <View style={styles.menuItem}>
-              <Iconn name="settings-outline" color="#FF6347" size={25}/>
+              <Iconn name="cog" color="#FF6347" size={25}/>
               <Text style={styles.menuItemText}>Settings</Text>
             </View>
           </TouchableRipple>

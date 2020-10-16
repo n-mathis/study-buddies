@@ -15,6 +15,7 @@ import ProfileScreen from './scenes/ProfileScreen';
 import SettingsScreen from './scenes/SettingsScreen';
 import LoginScreen from './scenes/LoginScreen';
 import MatchesScreen from './scenes/MatchesScreen';
+import FormScreen from './scenes/FormScreen';
 const {width} = Dimensions.get('window');
 
 const CustomDrawerNavigation = (props) => {
@@ -70,6 +71,13 @@ const Drawer = createDrawerNavigator(
       screen: SettingsScreen,
       navigationOptions: {
         title: 'Settings',
+      },
+    },
+    // Adding Form on the side for only to be able to access it in dev
+    Form: {
+      screen: FormScreen,
+      navigationOptions: {
+        title: 'Form',
       },
     },
     Login: {
