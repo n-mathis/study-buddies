@@ -1,17 +1,21 @@
 import React, {Component} from 'react';
 import {
   View,
+  ImageBackground,
   Text,
   StyleSheet,
   TextInput,
-  Button,
   KeyboardAvoidingView,
   Platform,
+  SafeAreaView,
   // Alert,
 } from 'react-native';
+import {Button, Card} from 'react-native-paper';
 import {ScrollView} from 'react-native-gesture-handler';
 import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
+const image = { uri: "https://www.oxfordlearning.com/wp-content/uploads/2018/11/group-photo.jpeg" };
+
 
 class FormScreen extends Component {
   constructor(props) {
@@ -112,102 +116,117 @@ class FormScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView>
-          <KeyboardAvoidingView
-            behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
-            <View style={styles.formContainer}>
-              <View style={styles.titleContainer}>
-                <Text style={styles.welcomeTitle}>
-                  Welcome to Studdy Buddies
-                </Text>
-              </View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputTitle}>Full Name</Text>
-                <TextInput
-                  autoCapitalize="words"
-                  placeholder="Name"
-                  style={styles.textInput}
-                  onChangeText={(input) => this.handleChange('name', input)}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputTitle}>Email</Text>
-                <TextInput
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                  placeholder="Email"
-                  style={styles.textInput}
-                  onChangeText={(input) => this.handleChange('email', input)}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputTitle}>Password</Text>
-                <TextInput
-                  keyboardType="default"
-                  autoCapitalize="none"
-                  placeholder="Password"
-                  secureTextEntry={true}
-                  style={styles.textInput}
-                  onChangeText={(input) => this.handleChange('password', input)}
-                />
-              </View>
-               <View style={styles.inputContainer}>
-                <Text style={styles.inputTitle}>Class</Text>
-                <TextInput
-                  autoCapitalize="words"
-                  placeholder="Class"
-                  style={styles.textInput}
-                  onChangeText={(input) => this.handleChange('class', input)}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputTitle}>Major</Text>
-                <TextInput
-                  autoCapitalize="words"
-                  placeholder="Major"
-                  style={styles.textInput}
-                  onChangeText={(input) => this.handleChange('major', input)}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputTitle}>College</Text>
-                <TextInput
-                  autoCapitalize="words"
-                  placeholder="College"
-                  style={styles.textInput}
-                  onChangeText={(input) => this.handleChange('college', input)}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputTitle}>Phone number</Text>
-                <TextInput
-                  keyboardType="phone-pad"
-                  placeholder="Phone Number"
-                  style={styles.textInput}
-                  onChangeText={(input) => this.handleChange('number', input)}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputTitle}>Description</Text>
-                <TextInput
-                  multiline
-                  placeholder="Description"
-                  style={styles.textInputDescription}
-                  onChangeText={(input) =>
-                    this.handleChange('description', input)
-                  }
-                />
-              </View>
-              <Button
-                title="Done"
-                onPress={() =>
-                  this.createUser(this.state.email, this.state.password)
-                }
-                color="green"
-              />
-            </View>
-          </KeyboardAvoidingView>
-        </ScrollView>
+        <ImageBackground source={image} style={styles.image}>
+          <SafeAreaView>
+            <ScrollView>
+              <KeyboardAvoidingView
+              behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
+                <View style={styles.formContainer}>
+                  <Card style={{paddingHorizontal: 30, paddingTop:40, paddingBottom: 40}}>
+                    <View style={styles.titleContainer}>
+                      <Text style={styles.welcomeTitle}>
+                        Welcome to Studdy Buddies
+                      </Text>
+                    </View>
+                    <View style={styles.inputContainer}>
+                      <Text style={styles.inputTitle}>Full Name</Text>
+                      <TextInput
+                        autoCapitalize="words"
+                        placeholder="Name"
+                        style={styles.textInput}
+                        onChangeText={(input) => this.handleChange('name', input)}
+                      />
+                    </View>
+                    <View style={styles.inputContainer}>
+                      <Text style={styles.inputTitle}>Email</Text>
+                      <TextInput
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        placeholder="Email"
+                        style={styles.textInput}
+                        onChangeText={(input) => this.handleChange('email', input)}
+                      />
+                    </View>
+                    <View style={styles.inputContainer}>
+                      <Text style={styles.inputTitle}>Password</Text>
+                      <TextInput
+                        keyboardType="default"
+                        autoCapitalize="none"
+                        placeholder="Password"
+                        secureTextEntry={true}
+                        style={styles.textInput}
+                        onChangeText={(input) => this.handleChange('password', input)}
+                      />
+                    </View>
+                    <View style={styles.inputContainer}>
+                      <Text style={styles.inputTitle}>Class</Text>
+                      <TextInput
+                        autoCapitalize="words"
+                        placeholder="Class"
+                        style={styles.textInput}
+                        onChangeText={(input) => this.handleChange('class', input)}
+                      />
+                    </View>
+                    <View style={styles.inputContainer}>
+                      <Text style={styles.inputTitle}>Major</Text>
+                      <TextInput
+                        autoCapitalize="words"
+                        placeholder="Major"
+                        style={styles.textInput}
+                        onChangeText={(input) => this.handleChange('major', input)}
+                      />
+                    </View>
+                    <View style={styles.inputContainer}>
+                      <Text style={styles.inputTitle}>College</Text>
+                      <TextInput
+                        autoCapitalize="words"
+                        placeholder="College"
+                        style={styles.textInput}
+                        onChangeText={(input) => this.handleChange('college', input)}
+                      />
+                    </View>
+                    <View style={styles.inputContainer}>
+                      <Text style={styles.inputTitle}>Phone number</Text>
+                      <TextInput
+                        keyboardType="phone-pad"
+                        placeholder="Phone Number"
+                        style={styles.textInput}
+                        onChangeText={(input) => this.handleChange('number', input)}
+                      />
+                    </View>
+                    <View style={styles.inputContainer}>
+                      <Text style={styles.inputTitle}>Description</Text>
+                      <TextInput
+                        multiline
+                        placeholder="Description"
+                        style={styles.textInputDescription}
+                        onChangeText={(input) =>
+                          this.handleChange('description', input)
+                        }
+                      />
+                    </View>
+                    <Button
+                      mode="contained"
+                      style={{backgroundColor: 'green', marginTop: 15}}
+                      onPress={() =>
+                        this.createUser(this.state.email, this.state.password)
+                      }>
+                        Done
+                    </Button>
+                    <Button
+                      mode="contained"
+                      style={{backgroundColor: '#0D1321', marginTop: 15}}
+                      onPress={() =>
+                        this.props.navigation.navigate('AuthLoading')
+                      }>
+                        Back
+                    </Button>
+                  </Card>
+                </View>
+              </KeyboardAvoidingView>
+            </ScrollView>
+          </SafeAreaView>
+        </ImageBackground>
       </View>
     );
   }
@@ -228,10 +247,14 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     justifyContent: 'center',
-    marginLeft: 50,
-    marginRight: 50,
+    marginHorizontal: 20,
     marginTop: 20,
     marginBottom: 40,
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
   },
   inputContainer: {
     marginBottom: 10,
