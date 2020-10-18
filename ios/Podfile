@@ -1,7 +1,6 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-pod 'RNGoogleSignin', :path => '../node_modules/@react-native-community/google-signin'
 
 
 # add the Firebase pod for Google Analytics
@@ -50,10 +49,8 @@ target 'studybuddies' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'RNGoogleSignin', :path => '../node_modules/@react-native-community/google-signin'
 
 
-  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
 
   target 'studybuddiesTests' do
     inherit! :search_paths
