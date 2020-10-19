@@ -1,12 +1,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
 import {Header} from 'react-native-elements';
-import Icon from 'react-native-ionicons';
-import Navigations from '_navigations/Navigations';
-
 import Iconn from 'react-native-vector-icons/MaterialCommunityIcons';
-
-
 import {
   Avatar,
   Title,
@@ -14,65 +9,114 @@ import {
   Text,
   TouchableRipple,
 } from 'react-native-paper';
+import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
 
 class ProfileScreen extends Component {
+  constructor(props) {
+    super(props);
+    // this state should be the one submited to the backend, WITH id obtained by signin in with firebase?
+    this.state = {
+      user: {},
+      uid: '',
+      name: '',
+      email: '',
+      // photo: '',
+      description: '',
+      major: '',
+      number: '',
+      class: '',
+      college: '',
+    };
+  }
   static navigationOptions = {
     drawerIcon: ({tintColor}) => (
-      <Icon name="woman" style={{fontSize: 24, color: tintColor}} />
+      <Iconn name="account" style={{fontSize: 24, color: tintColor}} />
     ),
   };
+  getUser = () => {
+    const user = auth().currentUser;
+    this.setState({user: user});
+    console.log(user.email);
+    database()
+      .ref(`/Users`)
+      .on('value', (snapshot) => {
+        console.log(snapshot.val());
+        // this.setState({user: user}););
+      });
+  };
+
+  componentDidMount() {
+    this.getUser();
+  }
 
   render() {
     return (
       <View style={styles.container}>
         <Header
           leftComponent={
-            <Icon
-              name="checkmark"
+            <Iconn
+              name="menu"
+              size={40}
               onPress={() => this.props.navigation.openDrawer()}
             />
           }
           centerComponent={<Text style={{fontSize: 28}}>Profile</Text>}
         />
-      <ScrollView>
-        <View style={styles.userInfoSection}>
-          <View style={{flexDirection: 'row', marginTop: 15}}>
-            <Avatar.Image 
-              source={{
-                uri: 'https://tentulogo.com/wp-content/uploads/Mark-Zuckerberg-FB.jpg',
-              }}
-              size={80}
-            />
-            <View style={{marginLeft: 20}}>
-              <Title style={[styles.title, {
-                marginTop:15,
-                marginBottom: 5,
-              }]}>Saul Mdo</Title>
-              <Caption style={styles.caption}>Computer Science</Caption>
+        <ScrollView>
+          <View style={styles.userInfoSection}>
+            <View style={{flexDirection: 'row', marginTop: 15}}>
+              <Avatar.Image
+                source={{
+                  uri:
+                    'https://tentulogo.com/wp-content/uploads/Mark-Zuckerberg-FB.jpg',
+                }}
+                size={80}
+              />
+              <View style={{marginLeft: 20}}>
+                <Title
+                  style={[
+                    styles.title,
+                    {
+                      marginTop: 15,
+                      marginBottom: 5,
+                    },
+                  ]}>
+                  Saul Mdo
+                </Title>
+                <Caption style={styles.caption}>Computer Science</Caption>
+              </View>
             </View>
           </View>
-        </View>
 
-        <View style={styles.userInfoSection}>
-          <View style={styles.row}>
-            <Iconn name="map-marker-radius" color="#777777" size={20}/>
-            <Text style={{color:"#777777", marginLeft: 20}}>MIT</Text>
+          <View style={styles.userInfoSection}>
+            <View style={styles.row}>
+              <Iconn name="map-marker-radius" color="#777777" size={20} />
+              <Text style={{color: '#777777', marginLeft: 20}}>MIT</Text>
+            </View>
+            <View style={styles.row}>
+              <Iconn name="phone" color="#777777" size={20} />
+              <Text style={{color: '#777777', marginLeft: 20}}>
+                +52 344324422
+              </Text>
+            </View>
+            <View style={styles.row}>
+              <Iconn name="email" color="#777777" size={20} />
+              <Text style={{color: '#777777', marginLeft: 20}}>
+                saul@montesdeoca.info
+              </Text>
+            </View>
           </View>
-          <View style={styles.row}>
-            <Iconn name="phone" color="#777777" size={20}/>
-            <Text style={{color:"#777777", marginLeft: 20}}>+52 344324422</Text>
-          </View>
-          <View style={styles.row}>
-            <Iconn name="email" color="#777777" size={20}/>
-            <Text style={{color:"#777777", marginLeft: 20}}>saul@montesdeoca.info</Text>
-          </View>
-        </View>
 
-        <View style={styles.infoBoxWrapper}>
-            <View style={[styles.infoBox, {
-              borderRightColor: '#dddddd',
-              borderRightWidth: 1
-            }]}>
+          <View style={styles.infoBoxWrapper}>
+            <View
+              style={[
+                styles.infoBox,
+                {
+                  borderRightColor: '#dddddd',
+                  borderRightWidth: 1,
+                },
+              ]}>
               <Title>2</Title>
               <Caption>Courses</Caption>
             </View>
@@ -80,35 +124,34 @@ class ProfileScreen extends Component {
               <Title>3</Title>
               <Caption>Matches</Caption>
             </View>
-        </View>
-
-        <View style={styles.menuWrapper}>
-          <TouchableRipple onPress={() => {}}>
-            <View style={styles.menuItem}>
-              <Iconn name="book-outline" color="#FF6347" size={25}/>
-              <Text style={styles.menuItemText}>Your Matches</Text>
-            </View>
-          </TouchableRipple>
-          <TouchableRipple onPress={() => {}}>
-            <View style={styles.menuItem}>
-              <Iconn name="share-outline" color="#FF6347" size={25}/>
-              <Text style={styles.menuItemText}>Tell Your Friends</Text>
-            </View>
-          </TouchableRipple>
-          <TouchableRipple onPress={() => {}}>
-            <View style={styles.menuItem}>
-              <Iconn name="account-check-outline" color="#FF6347" size={25}/>
-              <Text style={styles.menuItemText}>Support</Text>
-            </View>
-          </TouchableRipple>
-          <TouchableRipple onPress={() => {}}>
-            <View style={styles.menuItem}>
-              <Iconn name="cog" color="#FF6347" size={25}/>
-              <Text style={styles.menuItemText}>Settings</Text>
-            </View>
-          </TouchableRipple>
-        </View>
-      </ScrollView>
+          </View>
+          <View style={styles.menuWrapper}>
+            <TouchableRipple onPress={() => {}}>
+              <View style={styles.menuItem}>
+                <Iconn name="book-outline" color="#FF6347" size={25} />
+                <Text style={styles.menuItemText}>Your Matches</Text>
+              </View>
+            </TouchableRipple>
+            <TouchableRipple onPress={() => {}}>
+              <View style={styles.menuItem}>
+                <Iconn name="share-outline" color="#FF6347" size={25} />
+                <Text style={styles.menuItemText}>Tell Your Friends</Text>
+              </View>
+            </TouchableRipple>
+            <TouchableRipple onPress={() => {}}>
+              <View style={styles.menuItem}>
+                <Iconn name="account-check-outline" color="#FF6347" size={25} />
+                <Text style={styles.menuItemText}>Support</Text>
+              </View>
+            </TouchableRipple>
+            <TouchableRipple onPress={() => {}}>
+              <View style={styles.menuItem}>
+                <Iconn name="cog" color="#FF6347" size={25} />
+                <Text style={styles.menuItemText}>Settings</Text>
+              </View>
+            </TouchableRipple>
+          </View>
+        </ScrollView>
       </View>
     );
   }

@@ -1,10 +1,13 @@
-import { Image } from 'native-base';
 import React, {Component} from 'react';
-import {View, StyleSheet, ImageBackground, Button, ScrollView} from 'react-native';
 import {Header} from 'react-native-elements';
-import Icon from 'react-native-ionicons';
 import Iconn from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import {
+  View,
+  StyleSheet,
+  ImageBackground,
+  Button,
+  ScrollView,
+} from 'react-native';
 import {
   Avatar,
   Title,
@@ -16,7 +19,7 @@ import {
 class SettingsScreen extends Component {
   static navigationOptions = {
     drawerIcon: ({tintColor}) => (
-      <Icon name="football" style={{fontSize: 24, color: tintColor}} />
+      <Iconn name="cog" style={{fontSize: 24, color: tintColor}} />
     ),
   };
 
@@ -25,34 +28,50 @@ class SettingsScreen extends Component {
       <View>
         <Header
           leftComponent={
-            <Icon
-              name="checkmark"
+            <Iconn
+              name="menu"
+              size={40}
               onPress={() => this.props.navigation.openDrawer()}
             />
           }
           centerComponent={<Text style={{fontSize: 28}}>Settings</Text>}
-
         />
         <ScrollView>
-          <ImageBackground source={{uri: 'https://images.gawker.com/18k1fu0fjp5cmjpg/c_fit,fl_progressive,q_80,w_636.jpg'}} style={styles.image, styles.userInfoSection}>
+          <ImageBackground
+            source={{
+              uri:
+                'https://images.gawker.com/18k1fu0fjp5cmjpg/c_fit,fl_progressive,q_80,w_636.jpg',
+            }}
+            style={(styles.image, styles.userInfoSection)}>
             <View style={styles.userInfoSection}>
-              <View style={{flexDirection: 'column', marginTop: 15, alignItems: 'center'}}>
-                <TouchableRipple style={{borderRadius: 100}} onPress={()=>{}}>
+              <View
+                style={{
+                  flexDirection: 'column',
+                  marginTop: 15,
+                  alignItems: 'center',
+                }}>
+                <TouchableRipple style={{borderRadius: 100}} onPress={() => {}}>
                   <View>
-                    <Icon name="man" size={25} style={{ position: 'absolute', top: 30, left: 10 }} />
-                    <Avatar.Image 
+                    <Avatar.Image
                       source={{
-                        uri: 'https://tentulogo.com/wp-content/uploads/Mark-Zuckerberg-FB.jpg',
+                        uri:
+                          'https://tentulogo.com/wp-content/uploads/Mark-Zuckerberg-FB.jpg',
                       }}
                       size={80}
                     />
                   </View>
                 </TouchableRipple>
                 <View style={{alignItems: 'center'}}>
-                  <Title style={[styles.title, {
-                    marginTop:15,
-                    marginBottom: 5,
-                  }]}>Saul Mdo</Title>
+                  <Title
+                    style={[
+                      styles.title,
+                      {
+                        marginTop: 15,
+                        marginBottom: 5,
+                      },
+                    ]}>
+                    Saul Mdo
+                  </Title>
                   <Caption style={styles.caption}>Computer Science</Caption>
                 </View>
               </View>
@@ -62,50 +81,48 @@ class SettingsScreen extends Component {
           <View style={styles.menuWrapper}>
             <TouchableRipple onPress={() => {}}>
               <View style={styles.menuItem}>
-                <Iconn name="pencil" color="grey" size={25}/>
+                <Iconn name="pencil" color="grey" size={25} />
                 <Text style={styles.menuItemText}>Edit Name</Text>
               </View>
             </TouchableRipple>
             <TouchableRipple onPress={() => {}}>
               <View style={styles.menuItem}>
-                <Iconn name="pencil" color="grey" size={25}/>
+                <Iconn name="pencil" color="grey" size={25} />
                 <Text style={styles.menuItemText}>Edit photo</Text>
               </View>
             </TouchableRipple>
             <TouchableRipple onPress={() => {}}>
               <View style={styles.menuItem}>
-                <Iconn name="pencil" color="grey" size={25}/>
+                <Iconn name="pencil" color="grey" size={25} />
                 <Text style={styles.menuItemText}>Edit description</Text>
               </View>
             </TouchableRipple>
             <TouchableRipple onPress={() => {}}>
               <View style={styles.menuItem}>
-                <Iconn name="pencil" color="grey" size={25}/>
+                <Iconn name="pencil" color="grey" size={25} />
                 <Text style={styles.menuItemText}>Edit Major</Text>
               </View>
             </TouchableRipple>
             <TouchableRipple onPress={() => {}}>
               <View style={styles.menuItem}>
-                <Iconn name="pencil" color="grey" size={25}/>
+                <Iconn name="pencil" color="grey" size={25} />
                 <Text style={styles.menuItemText}>Edit email</Text>
               </View>
             </TouchableRipple>
-            <TouchableRipple style={{ marginBottom: 40 }} onPress={() => {}}>
+            <TouchableRipple style={{marginBottom: 40}} onPress={() => {}}>
               <View style={styles.menuItem}>
-                <Iconn name="pencil" color="grey" size={25}/>
+                <Iconn name="pencil" color="grey" size={25} />
                 <Text style={styles.menuItemText}>Edit phone number</Text>
               </View>
             </TouchableRipple>
 
-            <Button
-              title="Save"
-              onPress={()=>{}}
-              color="green"
-            />
-            <TouchableRipple  onPress={() => {}}>
+            <Button title="Save" onPress={() => {}} color="green" />
+            <TouchableRipple onPress={() => {}}>
               <View style={styles.logout}>
-                <Iconn name="logout" color="red" size={25}/>
-                <Text style={styles.menuItemText, {color:"red"}}>Log out</Text>
+                <Iconn name="logout" color="red" size={25} />
+                <Text style={(styles.menuItemText, {color: 'red'})}>
+                  Log out
+                </Text>
               </View>
             </TouchableRipple>
           </View>
@@ -126,13 +143,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#EBEBEB'
+    color: '#EBEBEB',
   },
   caption: {
     fontSize: 14,
     lineHeight: 14,
     fontWeight: '500',
-    color: '#EBEBEB'
+    color: '#EBEBEB',
   },
   menuWrapper: {
     marginTop: 10,
@@ -146,7 +163,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingVertical: 50,
     alignItems: 'center',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   menuItemText: {
     color: '#777777',
@@ -157,11 +174,10 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center",
-    height: 200
+    resizeMode: 'cover',
+    justifyContent: 'center',
+    height: 200,
   },
 });
-
 
 export default SettingsScreen;
